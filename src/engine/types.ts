@@ -41,7 +41,6 @@ export interface IndicatorScore {
 export interface AnalysisReport {
   totalScore: number // 总分 (0-100)
   level: IndicatorLevel
-  emoji: string // 对应表情
   summary: string // 一句话总结
   indicators: IndicatorScore[]
   generatedAt: string // ISO 时间戳

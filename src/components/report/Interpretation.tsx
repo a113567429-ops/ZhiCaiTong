@@ -17,21 +17,22 @@ function formatTimestamp(iso: string): string {
 export default function Interpretation({ report }: InterpretationProps) {
   return (
     <div
-      className="w-full rounded-2xl px-5 py-5"
+      className="w-full rounded-2xl px-6 py-6 border"
       style={{
         backgroundColor: 'var(--color-card)',
+        borderColor: 'var(--color-border)',
         borderRadius: 'var(--radius-card)',
       }}
     >
       <p
-        className="leading-relaxed"
-        style={{ fontSize: '15px', color: 'var(--color-text)' }}
+        className="leading-loose font-light tracking-wide italic"
+        style={{ fontSize: '16px', color: 'var(--color-text)' }}
       >
-        {report.summary}
+        "{report.summary}"
       </p>
 
       <p
-        className="mt-3 text-xs"
+        className="mt-4 text-[10px] tracking-widest uppercase opacity-50"
         style={{ color: 'var(--color-text-secondary)' }}
       >
         {formatTimestamp(report.generatedAt)}

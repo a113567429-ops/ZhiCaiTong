@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { calculateMetrics } from '../calculator'
 import { scoreAllMetrics } from '../scorer'
-import { generateReport } from '../interpreter'
 import { BENCHMARKS } from '@/data/benchmarks'
 import type { UserInput } from '../types'
 

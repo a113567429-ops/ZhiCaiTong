@@ -4,7 +4,6 @@ import { Progress } from '@/components/ui/progress'
 interface ScoreCardProps {
   score: number
   level: IndicatorLevel
-  emoji: string
   summary: string
 }
 
@@ -14,35 +13,39 @@ const LEVEL_COLORS: Record<IndicatorLevel, { bg: string; bar: string }> = {
   red: { bg: 'var(--color-red-bg)', bar: 'var(--color-red)' },
 }
 
-export default function ScoreCard({ score, level, emoji, summary }: ScoreCardProps) {
+export default function ScoreCard({ score, level, summary }: ScoreCardProps) {
   const colors = LEVEL_COLORS[level]
 
   return (
     <div
-      className="w-full rounded-2xl px-6 py-8 flex flex-col items-center gap-4"
+      className="w-full rounded-2xl px-6 py-10 flex flex-col items-center gap-6"
       style={{
         backgroundColor: colors.bg,
         borderRadius: 'var(--radius-card)',
+        border: `1px solid ${colors.bar}20`,
       }}
     >
-      {/* 表情图标 */}
-      <span className="leading-none" style={{ fontSize: '64px' }}>
-        {emoji}
+      {/* 状态标签 */}
+      <span 
+        className="text-xs tracking-[0.3em] font-light uppercase opacity-60"
+        style={{ color: 'var(--color-text-secondary)' }}
+      >
+        Financial Health Check
       </span>
 
       {/* 总分数字 */}
-      <div className="text-center">
+      <div className="text-center flex items-baseline gap-1">
         <span
-          className="font-bold leading-none"
-          style={{ fontSize: '48px', color: colors.bar }}
+          className="font-light leading-none tracking-tighter"
+          style={{ fontSize: '72px', color: colors.bar }}
         >
           {score}
         </span>
         <span
-          className="ml-1 text-lg"
+          className="text-sm tracking-widest font-light"
           style={{ color: 'var(--color-text-secondary)' }}
         >
-          分
+          PTS
         </span>
       </div>
 
@@ -59,8 +62,8 @@ export default function ScoreCard({ score, level, emoji, summary }: ScoreCardPro
 
       {/* 一句话总结 */}
       <p
-        className="text-center leading-relaxed"
-        style={{ fontSize: '16px', color: 'var(--color-text)' }}
+        className="text-center leading-loose font-light tracking-wide max-w-[240px]"
+        style={{ fontSize: '15px', color: 'var(--color-text)' }}
       >
         {summary}
       </p>

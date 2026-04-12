@@ -1,12 +1,5 @@
 import type { IndicatorScore, AnalysisReport, IndicatorLevel } from './types'
 
-/** 总体等级 → 表情映射 */
-const EMOJI_MAP: Record<IndicatorLevel, string> = {
-  green: '😊',
-  yellow: '🤔',
-  red: '⚠️',
-}
-
 /** 总体等级 → 一句话总结 */
 const SUMMARIES: Record<IndicatorLevel, string> = {
   green: '你的企业财务状况整体健康，继续保持！',
@@ -145,7 +138,6 @@ export function generateReport(
   return {
     totalScore,
     level,
-    emoji: EMOJI_MAP[level],
     summary: SUMMARIES[level],
     indicators: interpreted,
     generatedAt: new Date().toISOString(),

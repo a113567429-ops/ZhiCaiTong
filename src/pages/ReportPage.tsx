@@ -58,7 +58,6 @@ export default function ReportPage() {
         <ScoreCard
           score={report.totalScore}
           level={report.level}
-          emoji={report.emoji}
           summary={report.summary}
         />
 
