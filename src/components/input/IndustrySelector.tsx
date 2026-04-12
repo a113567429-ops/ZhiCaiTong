@@ -14,7 +14,7 @@ interface IndustryOption {
 
 const INDUSTRY_OPTIONS: IndustryOption[] = [
   { id: 'hotel', label: '酒店管理', icon: '🏨', enabled: true },
-  { id: 'realestate', label: '房地产', icon: '🏗️', enabled: false },
+  { id: 'realestate', label: '房地产', icon: '🏗️', enabled: true },
   { id: 'service', label: '服务业', icon: '💼', enabled: false },
   { id: 'construction', label: '建筑工程', icon: '🔨', enabled: false },
 ]
