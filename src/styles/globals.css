@@ -49,6 +49,7 @@
 }
 
 :root {
+  /* ── shadcn 基础变量 ── */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -81,6 +82,41 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* ── Layer 1：Salt Color Brown 原色 Token（来自 JPMorgan Salt DS）── */
+  --salt-color-white:     #FFFFFF;
+  --salt-color-brown-100: #F3EEE8;   /* rgb(243, 238, 232) */
+  --salt-color-brown-200: #EDE5D8;   /* rgb(237, 229, 216) */
+  --salt-color-brown-300: #D7BA9D;   /* rgb(215, 186, 157) */
+  --salt-color-brown-400: #B88A67;   /* rgb(184, 138, 103) */
+  --salt-color-brown-500: #996C48;   /* rgb(153, 108,  72) */
+  --salt-color-brown-600: #7D532F;   /* rgb(125,  83,  47) */
+
+  /* ── Layer 2：品牌语义 Token ── */
+  --color-primary:       #4E3629;                      /* 深棕，主按钮 / 导航栏 */
+  --color-primary-mid:   var(--salt-color-brown-600);  /* #7D532F，次级按钮 / hover */
+  --color-primary-gold:  #C5A059;                      /* 金棕，CTA 渐变 / 强调色 */
+  --color-primary-light: var(--salt-color-brown-200);  /* #EDE5D8，选中态背景 / Tag */
+
+  /* ── 健康度色彩（流量灯）── */
+  --color-green:     #2D7A45;                         /* 暖调绿，健康 */
+  --color-green-bg:  #EEF7F1;
+  --color-yellow:    #C5A059;                         /* 金棕复用为"需关注" */
+  --color-yellow-bg: var(--salt-color-brown-100);     /* #F3EEE8 */
+  --color-red:       #B93C2E;                         /* 暖调红，风险 */
+  --color-red-bg:    #FBF0EE;
+
+  /* ── 中性色 ── */
+  --color-text:           #221B18;                     /* 极深棕，正文 */
+  --color-text-secondary: var(--salt-color-brown-600); /* #7D532F，辅助文字 */
+  --color-bg:             var(--salt-color-brown-100); /* #F3EEE8，页面底色 */
+  --color-card:           var(--salt-color-white);     /* #FFFFFF，卡片 */
+  --color-border:         var(--salt-color-brown-200); /* #EDE5D8，分割线 / 边框 */
+
+  /* ── 圆角 ── */
+  --radius-card:   16px;
+  --radius-button: 12px;
+  --radius-input:  10px;
 }
 
 .dark {
@@ -122,7 +158,8 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--color-bg);
+    color: var(--color-text);
   }
   html {
     @apply font-sans;
