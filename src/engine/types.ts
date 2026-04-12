@@ -11,6 +11,7 @@ export interface UserInput {
   totalDebt: number // 应付账款+借款（元），默认 0
   fixedAssets: number // 固定资产（元），默认 0
   inventory: number // 存货（元），默认 0
+  monthlyInterest: number // 每月应付利息（元），默认 0
 }
 
 /** 计算得出的财务指标 */

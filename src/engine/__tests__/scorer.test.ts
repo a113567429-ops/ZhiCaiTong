@@ -53,7 +53,7 @@ describe('scoreAllMetrics', () => {
   describe('IndicatorScore 对象结构', () => {
     it('返回 4 个指标，每个含 name/key/value/score/level/label/interpretation/advice', () => {
       const result = scoreAllMetrics(
-        metrics({ profitMargin: 20, cashRunway: 6, debtToAssetRatio: 10, liquidityRatio: 3 }),
+        metrics({ profitMargin: 20, cashRunway: 6, debtToAssetRatio: 10, liquidityRatio: 10 }),
         HOTEL_BENCHMARK,
       )
       expect(result.indicators).toHaveLength(4)
@@ -73,13 +73,13 @@ describe('scoreAllMetrics', () => {
 
     it('indicator.value 与输入 metrics 一一对应', () => {
       const result = scoreAllMetrics(
-        metrics({ profitMargin: 20, cashRunway: 6, debtToAssetRatio: 10, liquidityRatio: 3 }),
+        metrics({ profitMargin: 20, cashRunway: 6, debtToAssetRatio: 10, liquidityRatio: 10 }),
         HOTEL_BENCHMARK,
       )
       expect(getIndicator(result, 'profitMargin').value).toBe(20)
       expect(getIndicator(result, 'cashRunway').value).toBe(6)
       expect(getIndicator(result, 'debtToAssetRatio').value).toBe(10)
-      expect(getIndicator(result, 'liquidityRatio').value).toBe(3)
+      expect(getIndicator(result, 'liquidityRatio').value).toBe(10)
     })
 
     it('indicator.name 是中文标签', () => {
@@ -95,7 +95,7 @@ describe('scoreAllMetrics', () => {
           profitMargin: 50, // green [10, 100]
           cashRunway: 6, // green [3, 999]
           debtToAssetRatio: 10, // green [0, 50]
-          liquidityRatio: 3, // green [1.5, 999]
+          liquidityRatio: 10, // green [6.0, 999]
         }),
         HOTEL_BENCHMARK,
       )
@@ -112,7 +112,7 @@ describe('scoreAllMetrics', () => {
           profitMargin: -50, // red [-100, 3]
           cashRunway: 0.5, // red [0, 2]
           debtToAssetRatio: 150, // red [70, 200]
-          liquidityRatio: 0.5, // red [0, 1.0]
+          liquidityRatio: 1.5, // red [0, 3.0]
         }),
         HOTEL_BENCHMARK,
       )
@@ -129,7 +129,7 @@ describe('scoreAllMetrics', () => {
           profitMargin: 5, // yellow [3, 10]
           cashRunway: 2.5, // yellow [2, 3]
           debtToAssetRatio: 60, // yellow [50, 70]
-          liquidityRatio: 1.25, // yellow [1.0, 1.5]
+          liquidityRatio: 4.5, // yellow [3.0, 6.0]
         }),
         HOTEL_BENCHMARK,
       )

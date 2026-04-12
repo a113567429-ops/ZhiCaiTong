@@ -12,6 +12,7 @@ function input(overrides: Partial<UserInput> = {}): UserInput {
     totalDebt: 0,
     fixedAssets: 0,
     inventory: 0,
+    monthlyInterest: 0,
     ...overrides,
   }
 }
@@ -87,25 +88,25 @@ describe('calculateMetrics', () => {
   })
 
   describe('liquidityRatio', () => {
-    it('流动资产 150, 负债 100 → 流动比率 1.5', () => {
+    it('流动资产 150, 每月利息 10 → 流动比率 15', () => {
       const result = calculateMetrics(
         input({
           cashOnHand: 100,
           accountsReceivable: 30,
           inventory: 20,
-          totalDebt: 100,
+          monthlyInterest: 10,
         }),
       )
-      expect(result.liquidityRatio).toBe(1.5)
+      expect(result.liquidityRatio).toBe(15)
     })
 
-    it('边界：负债 = 0 且有流动资产 → 流动比率 = 999', () => {
-      const result = calculateMetrics(input({ cashOnHand: 100, totalDebt: 0 }))
+    it('边界：利息 = 0 且有流动资产 → 流动比率 = 999', () => {
+      const result = calculateMetrics(input({ cashOnHand: 100, monthlyInterest: 0 }))
       expect(result.liquidityRatio).toBe(999)
     })
 
-    it('边界：负债 = 0 且无流动资产 → 流动比率 = 0', () => {
-      const result = calculateMetrics(input({ totalDebt: 0 }))
+    it('边界：利息 = 0 且无流动资产 → 流动比率 = 0', () => {
+      const result = calculateMetrics(input({ monthlyInterest: 0 }))
       expect(result.liquidityRatio).toBe(0)
     })
 
@@ -114,7 +115,7 @@ describe('calculateMetrics', () => {
         input({
           cashOnHand: 100,
           fixedAssets: 500, // 固定资产不算流动资产
-          totalDebt: 100,
+          monthlyInterest: 100,
         }),
       )
       expect(result.liquidityRatio).toBe(1)

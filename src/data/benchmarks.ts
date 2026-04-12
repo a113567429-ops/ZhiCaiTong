@@ -23,9 +23,9 @@ export const HOTEL_BENCHMARK: IndustryBenchmark = {
       weight: 0.25,
     },
     liquidityRatio: {
-      green: [1.5, 999], // 流动比率 ≥1.5 为健康
-      yellow: [1.0, 1.5], // 1.0-1.5 需关注
-      red: [0, 1.0], // <1.0 有风险
+      green: [6.0, 999], // 流动比率 ≥6.0 为健康（现金足以支撑 6 个月利息）
+      yellow: [3.0, 6.0], // 3.0-6.0 需关注
+      red: [0, 3.0], // <3.0 有风险
       weight: 0.15,
     },
   },

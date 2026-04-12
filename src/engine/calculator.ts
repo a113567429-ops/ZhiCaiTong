@@ -15,6 +15,7 @@ export function calculateMetrics(input: UserInput): FinancialMetrics {
     totalDebt,
     fixedAssets,
     inventory,
+    monthlyInterest,
   } = input
 
   // 利润率 = (收入 - 支出) / 收入 × 100
@@ -34,11 +35,11 @@ export function calculateMetrics(input: UserInput): FinancialMetrics {
   const debtToAssetRatio =
     totalAssets > 0 ? (totalDebt / totalAssets) * 100 : totalDebt > 0 ? 100 : 0
 
-  // 流动比率 = 流动资产 / 流动负债（此处简化为总负债）
+  // 流动比率 = 流动资产 / 每月应付利息（流动负债压力）
   // 流动资产不含固定资产
   const currentAssets = cashOnHand + accountsReceivable + inventory
   const liquidityRatio =
-    totalDebt > 0 ? currentAssets / totalDebt : currentAssets > 0 ? 999 : 0
+    monthlyInterest > 0 ? currentAssets / monthlyInterest : currentAssets > 0 ? 999 : 0
 
   return { profitMargin, cashRunway, debtToAssetRatio, liquidityRatio }
 }
