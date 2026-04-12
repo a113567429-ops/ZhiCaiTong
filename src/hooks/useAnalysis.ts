@@ -18,23 +18,21 @@ import type { UserInput } from '@/engine/types'
 export function useAnalysis() {
   const { state, dispatch } = useApp()
 
-  const runAnalysis = useCallback(() => {
+  const runAnalysis = useCallback((finalInput: UserInput) => {
     dispatch({ type: 'SET_ANALYZING', payload: true })
 
     // 模拟短暂计算延迟（增强"分析中"的感知）
     setTimeout(() => {
-      const input = state.userInput as UserInput
-
       // 防御判断：找不到行业基准时回退，避免崩溃
-      const benchmark = BENCHMARKS[input.industry]
+      const benchmark = BENCHMARKS[finalInput.industry]
       if (!benchmark) {
-        console.error(`未找到行业"${input.industry}"的基准数据，无法生成报告。`)
+        console.error(`未找到行业"${finalInput.industry}"的基准数据，无法生成报告。`)
         dispatch({ type: 'SET_ANALYZING', payload: false })
         return
       }
 
       // 1. 计算指标
-      const metrics = calculateMetrics(input)
+      const metrics = calculateMetrics(finalInput)
 
       // 2. 评分
       const { indicators, totalScore, level } = scoreAllMetrics(metrics, benchmark)
@@ -44,7 +42,7 @@ export function useAnalysis() {
 
       dispatch({ type: 'SET_REPORT', payload: report })
     }, 1500) // 1.5 秒动画时间
-  }, [state.userInput, dispatch])
+  }, [dispatch])
 
   return {
     runAnalysis,

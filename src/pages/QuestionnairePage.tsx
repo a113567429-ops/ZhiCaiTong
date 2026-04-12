@@ -89,12 +89,26 @@ export default function QuestionnairePage() {
     }
     setShowError(false)
 
-    // 保存当前值
-    saveCurrentValue()
+    // 计算实际值
+    const fieldValue = currentQuestion.useWan
+      ? localValue * 10000 // 万元→元
+      : localValue
+
+    // 保存到全局（主要为了回退或状态记录）
+    dispatch({
+      type: 'SET_INPUT',
+      payload: { field: currentQuestion.field, value: fieldValue },
+    })
 
     if (isLastStep) {
+      // 组装最新完整数据
+      const finalInput = {
+        ...userInput,
+        [currentQuestion.field]: fieldValue,
+      } as import('@/engine/types').UserInput
+
       // 最后一题 → 触发分析 + 跳转报告页
-      runAnalysis()
+      runAnalysis(finalInput)
       navigate('/report')
     } else {
       dispatch({ type: 'NEXT_STEP' })
@@ -122,7 +136,12 @@ export default function QuestionnairePage() {
     })
 
     if (isLastStep) {
-      runAnalysis()
+      const finalInput = {
+        ...userInput,
+        [currentQuestion.field]: 0,
+      } as import('@/engine/types').UserInput
+
+      runAnalysis(finalInput)
       navigate('/report')
     } else {
       dispatch({ type: 'NEXT_STEP' })
