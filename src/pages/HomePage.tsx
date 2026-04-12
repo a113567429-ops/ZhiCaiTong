@@ -6,6 +6,7 @@ import Header from '@/components/layout/Header'
 import MobileContainer from '@/components/layout/MobileContainer'
 import IndustrySelector from '@/components/input/IndustrySelector'
 import Footer from '@/components/layout/Footer'
+import logo from '@/assets/logo.png'
 
 /**
  * 首页 — 产品介绍 + 行业选择 + 启动入口。
@@ -33,7 +34,7 @@ export default function HomePage() {
         {/* Logo / Icon */}
         <div className="w-32 h-32 mb-6 pointer-events-none">
           <img 
-            src="/src/assets/logo.png" 
+            src={logo} 
             alt="企微星" 
             className="w-full h-full object-contain"
           />
@@ -74,13 +75,7 @@ export default function HomePage() {
         />
       </section>
 
-      {/* ── 行业选择 ── */}
-      <section className="px-2 pb-2">
-        <IndustrySelector
-          selected={selectedIndustry}
-          onSelect={setSelectedIndustry}
-        />
-      </section>
+
 
       {/* ── CTA 按钮 ── */}
       <section className="px-6 pt-2 pb-4">
