@@ -11,6 +11,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  // @ts-ignore: bypass vitest/vite UserConfigExport type mismatch
   test: {
     environment: 'jsdom',
     globals: true,
