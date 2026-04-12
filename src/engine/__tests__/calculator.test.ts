@@ -12,6 +12,7 @@ function input(overrides: Partial<UserInput> = {}): UserInput {
     totalDebt: 0,
     fixedAssets: 0,
     inventory: 0,
+    monthlyInterest: 0,
     ...overrides,
   }
 }

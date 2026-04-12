@@ -95,17 +95,6 @@ describe('generateReport', () => {
       expect(parsed.getTime()).not.toBeNaN()
     })
 
-    it('emoji 根据 level 正确映射', () => {
-      const green = generateReport(85, 'green', [])
-      expect(green.emoji).toBe('😊')
-
-      const yellow = generateReport(70, 'yellow', [])
-      expect(yellow.emoji).toBe('🤔')
-
-      const red = generateReport(40, 'red', [])
-      expect(red.emoji).toBe('⚠️')
-    })
-
     it('summary 根据 level 取对应文案', () => {
       const green = generateReport(85, 'green', [])
       expect(green.summary).toContain('健康')
@@ -138,6 +127,7 @@ describe('generateReport', () => {
         totalDebt: 800000,
         fixedAssets: 3000000,
         inventory: 100000,
+        monthlyInterest: 10000,
       }
 
       const m = calculateMetrics(input)

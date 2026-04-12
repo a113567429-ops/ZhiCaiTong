@@ -23,58 +23,58 @@ export default function IndicatorCard({ indicator }: IndicatorCardProps) {
       }}
     >
       {/* 顶行：红绿灯圆点 + 指标名 + 等级标签 + 分数 */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
         <span
-          className="inline-block w-3 h-3 rounded-full shrink-0"
+          className="inline-block w-1.5 h-1.5 rounded-full shrink-0"
           style={{ backgroundColor: dotColor }}
         />
         <span
-          className="font-semibold text-base flex-1"
+          className="font-medium text-sm flex-1 tracking-widest uppercase opacity-80"
           style={{ color: 'var(--color-text)' }}
         >
           {indicator.name}
         </span>
         <span
-          className="text-xs px-2 py-0.5 rounded-full"
+          className="text-[10px] tracking-widest px-2 py-0.5 rounded-sm border opacity-60 font-light"
           style={{
-            backgroundColor: dotColor,
-            color: '#fff',
+            borderColor: dotColor,
+            color: dotColor,
           }}
         >
           {indicator.label}
         </span>
         <span
-          className="font-bold text-base tabular-nums"
-          style={{ color: dotColor }}
+          className="font-light text-xl tabular-nums tracking-tighter"
+          style={{ color: 'var(--color-text)' }}
         >
-          {indicator.score}分
+          {indicator.score}
         </span>
       </div>
 
       {/* 分割线 */}
-      <hr className="my-3" style={{ borderColor: 'var(--color-border)' }} />
+      <div className="h-px w-full my-4 bg-gradient-to-r from-transparent via-[var(--color-border)] to-transparent" />
 
       {/* 解读文字 */}
       <p
-        className="leading-relaxed"
-        style={{ fontSize: '14px', color: 'var(--color-text)' }}
+        className="leading-relaxed font-light italic"
+        style={{ fontSize: '15px', color: 'var(--color-text)' }}
       >
         {indicator.interpretation}
       </p>
 
-      {/* 分割线 */}
-      <hr className="my-3" style={{ borderColor: 'var(--color-border)' }} />
-
-      {/* 建议 */}
+      {/* 摘要区 */}
       <div
-        className="rounded-xl px-4 py-3"
-        style={{ backgroundColor: 'var(--color-bg)' }}
+        className="mt-4 rounded-xl px-4 py-4 border-l-2"
+        style={{ 
+          backgroundColor: 'var(--color-bg)',
+          borderColor: dotColor
+        }}
       >
         <p
-          className="leading-relaxed"
+          className="leading-loose font-light tracking-wide italic"
           style={{ fontSize: '14px', color: 'var(--color-text-secondary)' }}
         >
-          💡 {indicator.advice}
+          {indicator.advice}
         </p>
       </div>
     </div>

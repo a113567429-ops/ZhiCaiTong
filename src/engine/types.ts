@@ -11,6 +11,7 @@ export interface UserInput {
   totalDebt: number // 应付账款+借款（元），默认 0
   fixedAssets: number // 固定资产（元），默认 0
   inventory: number // 存货（元），默认 0
+  monthlyInterest: number // 每月应缴利息（元），默认 0
 }
 
 /** 计算得出的财务指标 */
@@ -40,7 +41,6 @@ export interface IndicatorScore {
 export interface AnalysisReport {
   totalScore: number // 总分 (0-100)
   level: IndicatorLevel
-  emoji: string // 对应表情
   summary: string // 一句话总结
   indicators: IndicatorScore[]
   generatedAt: string // ISO 时间戳
