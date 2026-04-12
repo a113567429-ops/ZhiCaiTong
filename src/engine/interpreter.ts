@@ -63,7 +63,7 @@ function interpretCashRunway(ind: IndicatorScore): IndicatorScore {
   return {
     ...ind,
     interpretation: `现金只够撑 ${months.toFixed(1)} 个月，非常危险！`,
-    advice: '如果酒店突然停业，你几乎没有缓冲时间。这是最需要立即解决的问题。',
+    advice: '如果经营突然停顿，你几乎没有缓冲时间。这是最需要立即解决的问题。',
   }
 }
 

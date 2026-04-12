@@ -31,7 +31,39 @@ export const HOTEL_BENCHMARK: IndustryBenchmark = {
   },
 }
 
-// 第一阶段仅导出酒店管理，第二阶段在此处扩展
+export const REAL_ESTATE_BENCHMARK: IndustryBenchmark = {
+  industry: 'realestate',
+  label: '房地产',
+  metrics: {
+    profitMargin: {
+      green: [30, 100], // 30%+ 净利为健康
+      yellow: [15, 30],
+      red: [-100, 15],
+      weight: 0.3,
+    },
+    cashRunway: {
+      green: [6, 999], // 需要更长缓冲 (6个月)
+      yellow: [3, 6],
+      red: [0, 3],
+      weight: 0.3,
+    },
+    debtToAssetRatio: {
+      green: [0, 65], // 容忍度更高 (65%)
+      yellow: [65, 80],
+      red: [80, 200],
+      weight: 0.25,
+    },
+    liquidityRatio: {
+      green: [5.0, 999], // 覆盖 5 个月利息
+      yellow: [2.5, 5.0],
+      red: [0, 2.5],
+      weight: 0.15,
+    },
+  },
+}
+
+// 导出所有行业基准
 export const BENCHMARKS: Record<string, IndustryBenchmark> = {
   hotel: HOTEL_BENCHMARK,
+  realestate: REAL_ESTATE_BENCHMARK,
 }

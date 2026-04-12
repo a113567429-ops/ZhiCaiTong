@@ -19,7 +19,7 @@ describe('generateReport', () => {
   describe('利润率解读', () => {
     it('绿灯 → interpretation 包含"不错"，advice 包含"留存"', () => {
       const scored = scoreAllMetrics(
-        metrics({ profitMargin: 20, cashRunway: 6, debtToAssetRatio: 10, liquidityRatio: 3 }),
+        metrics({ profitMargin: 20, cashRunway: 6, debtToAssetRatio: 10, liquidityRatio: 10 }),
         HOTEL_BENCHMARK,
       )
       const report = generateReport(scored.totalScore, scored.level, scored.indicators)
@@ -77,7 +77,7 @@ describe('generateReport', () => {
 
   describe('流动比率解读', () => {
     it('黄灯 → interpretation 包含"紧"', () => {
-      const scored = scoreAllMetrics(metrics({ liquidityRatio: 1.25 }), HOTEL_BENCHMARK)
+      const scored = scoreAllMetrics(metrics({ liquidityRatio: 4.5 }), HOTEL_BENCHMARK)
       const report = generateReport(scored.totalScore, scored.level, scored.indicators)
       const ind = report.indicators.find((i) => i.key === 'liquidityRatio')!
       expect(ind.interpretation).toContain('紧')
@@ -87,7 +87,7 @@ describe('generateReport', () => {
   describe('报告元信息', () => {
     it('generatedAt 是合法 ISO 时间戳', () => {
       const scored = scoreAllMetrics(
-        metrics({ profitMargin: 20, cashRunway: 6, debtToAssetRatio: 10, liquidityRatio: 3 }),
+        metrics({ profitMargin: 20, cashRunway: 6, debtToAssetRatio: 10, liquidityRatio: 10 }),
         HOTEL_BENCHMARK,
       )
       const report = generateReport(scored.totalScore, scored.level, scored.indicators)
@@ -116,7 +116,7 @@ describe('generateReport', () => {
 
     it('所有 indicator 的 interpretation 和 advice 都已填充', () => {
       const scored = scoreAllMetrics(
-        metrics({ profitMargin: 20, cashRunway: 6, debtToAssetRatio: 10, liquidityRatio: 3 }),
+        metrics({ profitMargin: 20, cashRunway: 6, debtToAssetRatio: 10, liquidityRatio: 10 }),
         HOTEL_BENCHMARK,
       )
       const report = generateReport(scored.totalScore, scored.level, scored.indicators)
