@@ -29,100 +29,49 @@ export default function HomePage() {
       <Header />
 
       {/* ── Hero Section ── */}
-      <section className="flex flex-col items-center px-6 pt-10 pb-6">
+      <section className="flex flex-col items-center px-6 pt-16 pb-6">
         {/* Logo / Icon */}
-        <div
-          className="flex items-center justify-center w-20 h-20 rounded-2xl mb-5"
-          style={{
-            background:
-              'linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-mid) 100%)',
-            boxShadow: '0 8px 24px rgba(78, 54, 41, 0.18)',
-          }}
-        >
-          <span className="text-4xl" role="img" aria-label="智财通">
-            💰
-          </span>
+        <div className="w-32 h-32 mb-6 pointer-events-none">
+          <img 
+            src="/src/assets/logo.png" 
+            alt="企微星" 
+            className="w-full h-full object-contain"
+          />
         </div>
 
         {/* 产品名 */}
         <h1
-          className="text-3xl font-bold tracking-tight mb-2"
+          className="text-3xl font-light tracking-[0.2em] mb-8"
           style={{ color: 'var(--color-primary)' }}
         >
           智财通
         </h1>
 
-        {/* 副标题 */}
-        <p
-          className="text-base leading-relaxed mb-1"
-          style={{ color: 'var(--color-text-secondary)' }}
-        >
-          企业财务健康体检
-        </p>
-
-        {/* Tagline */}
-        <p
-          className="text-lg font-semibold mb-2"
-          style={{ color: 'var(--color-primary-gold)' }}
-        >
-          30秒了解企业财务健康状况
-        </p>
-
         {/* Slogan / Editorial Quote */}
         <div
-          className="relative mt-2 mb-2 px-5 py-3 text-center"
-          style={{
-            borderLeft: '3px solid var(--color-primary-gold)',
-            backgroundColor: 'var(--color-primary-light)',
-            borderRadius: 'var(--radius-input)',
-          }}
+          className="relative mt-2 mb-10 px-8 py-4 text-center border-y border-[var(--color-border)]"
         >
           <p
-            className="text-sm italic leading-relaxed"
+            className="text-base font-light italic leading-loose tracking-widest"
             style={{ color: 'var(--color-text-secondary)' }}
           >
-            "时至不行，反受其殃"
+            “时至不行，反受其殃”
           </p>
           <p
-            className="text-xs mt-1 opacity-70"
+            className="text-[10px] mt-2 opacity-60 tracking-[0.3em] uppercase"
             style={{ color: 'var(--color-text-secondary)' }}
           >
-            — 了解财务风险，防患于未然
+            — 智财通 · 财务风险预警 —
           </p>
         </div>
       </section>
 
-      {/* ── 特色亮点 ── */}
-      <section className="px-6 pb-4">
-        <div className="grid grid-cols-3 gap-3">
-          {[
-            { icon: '⚡', title: '快速体检', desc: '7道题 · 30秒' },
-            { icon: '📊', title: '专业分析', desc: '4维度指标' },
-            { icon: '💡', title: '通俗易懂', desc: '比喻化解读' },
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="flex flex-col items-center py-4 px-2 rounded-xl transition-all duration-200"
-              style={{
-                backgroundColor: 'var(--color-primary-light)',
-              }}
-            >
-              <span className="text-2xl mb-2">{item.icon}</span>
-              <span
-                className="text-sm font-semibold mb-0.5"
-                style={{ color: 'var(--color-primary)' }}
-              >
-                {item.title}
-              </span>
-              <span
-                className="text-xs"
-                style={{ color: 'var(--color-text-secondary)' }}
-              >
-                {item.desc}
-              </span>
-            </div>
-          ))}
-        </div>
+      {/* 行业选择 */}
+      <section className="px-2 pb-6">
+        <IndustrySelector
+          selected={selectedIndustry}
+          onSelect={setSelectedIndustry}
+        />
       </section>
 
       {/* ── 行业选择 ── */}
