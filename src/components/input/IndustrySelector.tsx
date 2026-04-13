@@ -29,13 +29,6 @@ const INDUSTRY_OPTIONS: IndustryOption[] = [
 export default function IndustrySelector({ selected, onSelect }: IndustrySelectorProps) {
   return (
     <div className="w-full px-4 py-4">
-      <h3
-        className="text-base font-medium mb-4"
-        style={{ color: 'var(--color-text)', letterSpacing: '0.05em' }}
-      >
-        选择评估行业
-      </h3>
-
       <div className="grid grid-cols-2 gap-4">
         {INDUSTRY_OPTIONS.map((option) => {
           const isSelected = selected === option.id
